@@ -1,6 +1,9 @@
 package com.cnbleu.crashreport.catchable.javacatch;
 
+import android.content.Context;
+
 import com.cnbleu.crashreport.core.CrashCatchBuilder;
+import com.cnbleu.crashreport.recordable.RecordBean;
 
 /**
  * <b>Project:</b> AndroidCrashReportor<br>
@@ -9,11 +12,20 @@ import com.cnbleu.crashreport.core.CrashCatchBuilder;
  * <b>Description:</b>
  * <br>
  */
-public class SimpleJavaCrashCatchBuilder extends CrashCatchBuilder<SimpleJavaCrashCatchImpl> {
-    // TODO: 16/2/24 Java崩溃捕获构建器实现
+public class SimpleJavaCrashCatchBuilder extends CrashCatchBuilder<SimpleJavaCrashCatchImpl, RecordBean> {
+
+    private Context mContext;
+
+    public SimpleJavaCrashCatchBuilder(Context context) {
+        this.mContext = context;
+    }
+
+    public Context getContext() {
+        return this.mContext;
+    }
 
     @Override
     public SimpleJavaCrashCatchImpl build() {
-        return null;
+        return new SimpleJavaCrashCatchImpl(this);
     }
 }

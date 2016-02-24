@@ -1,5 +1,7 @@
 package com.cnbleu.crashreport.core;
 
+import com.cnbleu.crashreport.recordable.RecordBean;
+
 /**
  * <b>Project:</b> AndroidCrashReportor<br>
  * <b>Create Date:</b> 16/2/23<br>
@@ -8,30 +10,30 @@ package com.cnbleu.crashreport.core;
  * 基本的{@link ICrashCatchable}构造器。
  * <br>
  */
-public abstract class CrashCatchBuilder<T extends ICrashCatchable> {
+public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends RecordBean> {
     private static IRecordable sDefaultRecordable;
     // TODO: 16/2/24 默认实现一个IReadcordable
 
     /** 默认允许执行系统默认的异常捕获， 默认允许 */
     private boolean enableDefaultCrashHandler = true;
 
-    private IRecordable mRecordable;
+    private IRecordable<D> mRecordable;
 
-    public CrashCatchBuilder defaultRecordable(IRecordable recordable) {
+    public CrashCatchBuilder defaultRecordable(IRecordable<D> recordable) {
         CrashCatchBuilder.sDefaultRecordable = recordable;
         return this;
     }
 
-    public IRecordable getDefaultRecordable() {
+    public IRecordable<D> getDefaultRecordable() {
         return CrashCatchBuilder.sDefaultRecordable;
     }
 
-    public CrashCatchBuilder setRecordable(IRecordable recordable) {
+    public CrashCatchBuilder setRecordable(IRecordable<D> recordable) {
         this.mRecordable = recordable;
         return this;
     }
 
-    public IRecordable getRecordable() {
+    public IRecordable<D> getRecordable() {
         return this.mRecordable;
     }
 
@@ -46,6 +48,10 @@ public abstract class CrashCatchBuilder<T extends ICrashCatchable> {
     public CrashCatchBuilder enableDefaultCrashHandler(boolean enable) {
         this.enableDefaultCrashHandler = enable;
         return this;
+    }
+
+    public boolean enableDefaultCrashHandler(){
+        return this.enableDefaultCrashHandler;
     }
 
     public abstract T build();

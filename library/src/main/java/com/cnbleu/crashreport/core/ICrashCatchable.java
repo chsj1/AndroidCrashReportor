@@ -10,9 +10,11 @@ import android.content.Context;
  * 崩溃捕获能力接口。
  * <br>
  */
-public interface ICrashCatchable {
+public interface ICrashCatchable<T> {
 
     void init(Context context);
+
+    void setRecordable(IRecordable<T> recordable);
 
     /**
      * 捕获到Crash。
@@ -20,6 +22,4 @@ public interface ICrashCatchable {
      * @param params 期望的参数列表。
      */
     void catchCrash(Object... params);
-
-    void setRecordable(IRecordable recordable);
 }

@@ -41,9 +41,11 @@ public class AndroidCrashReportor {
      * @param context applicaiton context
      */
     public void init(Context context) {
+        context = context.getApplicationContext();
+
         final CrashCatchConfig.Builder builder = new CrashCatchConfig.Builder();
 
-        SimpleJavaCrashCatchBuilder javaCrashCatchBuilder = new SimpleJavaCrashCatchBuilder();
+        SimpleJavaCrashCatchBuilder javaCrashCatchBuilder = new SimpleJavaCrashCatchBuilder(context);
         builder.addCrashCatchable(javaCrashCatchBuilder.build());
 
         init(context, builder.build());

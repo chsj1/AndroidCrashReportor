@@ -1,6 +1,7 @@
 package com.cnbleu.crashreport.catchable.javacatch;
 
 import com.cnbleu.crashreport.core.ICrashCatchable;
+import com.cnbleu.crashreport.recordable.RecordBean;
 
 /**
  * <b>Project:</b> AndroidCrashReportor<br>
@@ -8,7 +9,8 @@ import com.cnbleu.crashreport.core.ICrashCatchable;
  * <b>Author:</b> Gordon<br>
  * <b>Description:</b> <br>
  */
-public abstract class AbsJavaCrashCatchable implements ICrashCatchable, Thread.UncaughtExceptionHandler {
+public abstract class AbsJavaCrashCatchable implements ICrashCatchable<RecordBean>,
+                                                       Thread.UncaughtExceptionHandler {
     private SimpleJavaCrashCatchBuilder mBuilder;
 
     public AbsJavaCrashCatchable(SimpleJavaCrashCatchBuilder builder) {
