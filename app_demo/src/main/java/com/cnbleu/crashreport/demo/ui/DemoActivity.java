@@ -19,15 +19,33 @@ public class DemoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.demo_activity);
 
-        findViewById(R.id.demo_crash_btn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.demo_crash_main_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 testCrashCatchInMainThread();
             }
         });
+
+        findViewById(R.id.demo_crash_async_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testCrashCatchInAsync();
+            }
+        });
     }
 
     private void testCrashCatchInMainThread() {
-        throw new RuntimeException("主线程崩溃");
+        throw new IllegalArgumentException("主线程崩溃");
+    }
+
+    private void testCrashCatchInAsync() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 模拟空指针异常
+                String str = null;
+                str.length();
+            }
+        }).start();
     }
 }

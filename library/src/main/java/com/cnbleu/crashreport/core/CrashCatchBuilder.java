@@ -12,10 +12,9 @@ import com.cnbleu.crashreport.recordable.RecordBean;
  */
 public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends RecordBean> {
     private static IRecordable sDefaultRecordable;
-    // TODO: 16/2/24 默认实现一个IReadcordable
 
-    /** 默认允许执行系统默认的异常捕获， 默认允许 */
-    private boolean enableDefaultCrashHandler = true;
+    /** 默认允许执行系统默认的异常捕获， 默认不允许 */
+    private boolean enableDefaultCrashHandler = false;
 
     private IRecordable<D> mRecordable;
 
