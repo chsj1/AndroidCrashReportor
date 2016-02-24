@@ -1,20 +1,19 @@
 package com.cnbleu.crashreport.catchable.javacatch;
 
-import com.cnbleu.crashreport.core.ICrashCatchable;
-import com.cnbleu.crashreport.recordable.RecordBean;
+import com.cnbleu.crashreport.core.AbsCrashCatchable;
 
 /**
  * <b>Project:</b> AndroidCrashReportor<br>
  * <b>Create Date:</b> 16/2/23<br>
  * <b>Author:</b> Gordon<br>
- * <b>Description:</b> <br>
+ * <b>Description:</b>
+ * Java异常捕获控制类的抽象实现。
+ * <br>
  */
-public abstract class AbsJavaCrashCatchable implements ICrashCatchable<RecordBean>,
-                                                       Thread.UncaughtExceptionHandler {
-    private SimpleJavaCrashCatchBuilder mBuilder;
+public abstract class AbsJavaCrashCatchable<T> extends AbsCrashCatchable<T> implements Thread.UncaughtExceptionHandler {
 
     public AbsJavaCrashCatchable(SimpleJavaCrashCatchBuilder builder) {
-        this.mBuilder = builder;
+        super(builder);
     }
 
 

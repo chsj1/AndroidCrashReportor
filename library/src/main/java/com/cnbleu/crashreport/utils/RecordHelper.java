@@ -20,7 +20,7 @@ public class RecordHelper {
         // hide
     }
 
-    public static String dumpDeviceInfo(Context context) {
+    public static String getDeviceInfo(Context context) {
         PackageInfo pInfo;
         try {
             pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(),

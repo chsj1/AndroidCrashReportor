@@ -6,7 +6,7 @@ package com.cnbleu.crashreport.core;
  * <b>Author:</b> Gordon<br>
  * <b>Description:</b> <br>
  */
-public abstract class AbsCrashCatchable implements ICrashCatchable {
+public abstract class AbsCrashCatchable<T> implements ICrashCatchable<T> {
 
     private CrashCatchBuilder mCrashCatchBuilder;
 

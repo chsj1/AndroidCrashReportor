@@ -77,6 +77,9 @@ public class AndroidCrashReportor {
             crashCatchable.init(mContext);
         }
 
+        if (VERBOSE) {
+            Log.v(TAG, "AndroidCrashReportor inited.");
+        }
     }
 
 }

@@ -13,8 +13,10 @@ import java.io.File;
  * <br>
  */
 public class FileHelper {
-    /** */
-    private static final String CRASH_CACHED_NAME_PREFIX = "crashed_cache_";
+    /** 错误日志文件名前缀 */
+    private static final String CRASH_CACHED_NAME_PREFIX = "crash_cache";
+    /** 错误日志文件名后缀 */
+    private static final String CRASH_CACHED_NAME_SUFFIX = ".crash";
 
     private FileHelper() {
         // hide
@@ -42,9 +44,13 @@ public class FileHelper {
      *
      * @return
      */
-    public static String getRecordFileName(Context context, long times) {
+    public static String getRecordFileName(Context context, String times) {
         final String packageName = context.getPackageName();
 
-        return String.format("%s%s_%s", CRASH_CACHED_NAME_PREFIX, times, packageName);
+        return String.format("%s_%s_%s%s",
+                             CRASH_CACHED_NAME_PREFIX,
+                             times,
+                             packageName,
+                             CRASH_CACHED_NAME_SUFFIX);
     }
 }

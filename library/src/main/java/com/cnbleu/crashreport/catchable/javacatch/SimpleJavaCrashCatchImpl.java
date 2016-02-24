@@ -8,6 +8,7 @@ import com.cnbleu.crashreport.core.IRecordable;
 import com.cnbleu.crashreport.recordable.RecordBean;
 import com.cnbleu.crashreport.utils.RecordHelper;
 
+import static com.cnbleu.crashreport.CrashDebug.TAG;
 import static com.cnbleu.crashreport.CrashDebug.VERBOSE;
 
 /**
@@ -18,7 +19,7 @@ import static com.cnbleu.crashreport.CrashDebug.VERBOSE;
  * Java异常捕获控制类的默认实现。
  * <br>
  */
-public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable {
+public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> {
 
     private IRecordable<RecordBean> mRecordable;
 
@@ -43,6 +44,10 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable {
 
     @Override
     public void init(Context context) {
+        if (VERBOSE) {
+            Log.v(TAG, "JavaCrashCatchImpl initing...");
+        }
+
         mDefaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
@@ -54,6 +59,10 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable {
      */
     @Override
     public void catchCrash(Object... params) {
+        if (VERBOSE) {
+            Log.v(TAG, "JavaCrashCatchImpl catched crash.");
+        }
+
         final Thread thread = (Thread) params[0];
         final Throwable ex = (Throwable) params[1];
 
@@ -62,7 +71,7 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable {
         bean.time = System.currentTimeMillis();
 
         // 产生异常的设备信息
-        bean.deviceInfo = RecordHelper.dumpDeviceInfo(mContext);
+        bean.deviceInfo = RecordHelper.getDeviceInfo(mContext);
 
         // 封装异常信息
         if (null == ex) {

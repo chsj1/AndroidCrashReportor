@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.cnbleu.crashreport.core.IRecordable;
 import com.cnbleu.crashreport.utils.FileHelper;
+import com.cnbleu.crashreport.utils.TimeUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import static com.cnbleu.crashreport.CrashDebug.TAG;
+import static com.cnbleu.crashreport.CrashDebug.VERBOSE;
 
 /**
  * <b>Project:</b> AndroidCrashReportor<br>
@@ -35,7 +37,14 @@ public class FileRecordableImpl implements IRecordable<RecordBean> {
      */
     @Override
     public void record(RecordBean data) {
+        // 使用单文件记录单个错误日志
+        // 1. 可以避免多线程及多进程环境下同时对单个文件进行同时操作的同步性能开销
+        // 2. 降低单个文件在并发情况下处理的复杂度
+
         File file = FileHelper.getRecordDir(mContext);
+        if (VERBOSE) {
+            Log.v(TAG, "record crash data to file. file directory: " + file.getAbsolutePath());
+        }
 
         if (!file.exists()) {
             boolean exists = file.mkdirs();
@@ -46,15 +55,20 @@ public class FileRecordableImpl implements IRecordable<RecordBean> {
             }
         }
 
-        final String fileName = FileHelper.getRecordFileName(mContext, data.time);
+        final String time = TimeUtils.getReadableTime(data.time);
+        final String fileName = FileHelper.getRecordFileName(mContext, time);
         file = new File(file, fileName);
 
         try {
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file)));
-            writer.println(data.time);
+            writer.println(time);
             writer.println(data.deviceInfo);
             writer.println(data.stackTrace);
             writer.close();
+
+            if (VERBOSE) {
+                Log.v(TAG, "crash data saved to: " + file.getAbsolutePath());
+            }
         } catch (IOException e) {
             Log.w(TAG, "Error occured when write record to file. file path: " + file.getAbsolutePath());
         }
