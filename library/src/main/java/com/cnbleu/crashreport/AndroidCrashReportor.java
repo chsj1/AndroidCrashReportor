@@ -7,6 +7,7 @@ import com.cnbleu.crashreport.catchable.javacatch.SimpleJavaCrashCatchBuilder;
 import com.cnbleu.crashreport.core.ICrashCatchable;
 import com.cnbleu.crashreport.notifiable.ToastNotifiable;
 import com.cnbleu.crashreport.recordable.FileRecordableImpl;
+import com.cnbleu.crashreport.sender.upload.FileUploadImpl;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class AndroidCrashReportor {
         SimpleJavaCrashCatchBuilder javaCrashCatchBuilder = new SimpleJavaCrashCatchBuilder(context);
         javaCrashCatchBuilder.setRecordable(new FileRecordableImpl(context));
         javaCrashCatchBuilder.setNotifiable(new ToastNotifiable(context));
+        javaCrashCatchBuilder.setSendable(new FileUploadImpl(context));
         builder.addCrashCatchable(javaCrashCatchBuilder.build());
 
         init(context, builder.build());

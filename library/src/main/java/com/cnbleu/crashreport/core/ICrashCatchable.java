@@ -36,6 +36,13 @@ public interface ICrashCatchable<T> {
     void setNotifiable(INotifiable<T> notifiable);
 
     /**
+     * 设置日志信息发送接口
+     *
+     * @param sendable {@link ISendable}
+     */
+    void setSendable(ISendable sendable);
+
+    /**
      * 捕获到Crash。
      *
      * @param params 期望的参数列表。

@@ -1,9 +1,17 @@
 <manifest package="com.cnbleu.crashreport"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:label="@string/app_name">
+
+        <activity
+            android:name=".permission.RequestPermissionActivity"
+            android:process=":req_permission"
+            android:theme="@style/Transparent"/>
+        <service android:name=".sender.upload.service.FileUploadService"/>
 
     </application>
 

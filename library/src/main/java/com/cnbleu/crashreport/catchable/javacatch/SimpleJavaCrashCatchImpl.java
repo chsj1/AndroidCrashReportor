@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.cnbleu.crashreport.CrashDebug;
 import com.cnbleu.crashreport.core.IRecordable;
+import com.cnbleu.crashreport.core.ISendable;
 import com.cnbleu.crashreport.notifiable.INotifiable;
 import com.cnbleu.crashreport.recordable.RecordBean;
 import com.cnbleu.crashreport.utils.RecordHelper;
@@ -24,6 +25,7 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> 
 
     private IRecordable<RecordBean> mRecordable;
     private INotifiable<RecordBean> mNotifiable;
+    private ISendable mSendable;
 
     private Thread.UncaughtExceptionHandler mDefaultUncaughtExceptionHandler;
     private boolean enableDefaultCrashHandler;
@@ -43,6 +45,7 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> 
             this.mRecordable = builder.getDefaultRecordable();
         }
         this.mNotifiable = builder.getNotifiable();
+        this.mSendable = builder.getSendable();
     }
 
     @Override
@@ -92,7 +95,10 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> 
             mRecordable.record(bean);
         }
 
-        // TODO: 16/2/24 日志上传功能
+        // 发送异常日志
+        if (null != mSendable) {
+            mSendable.sendRecord(bean);
+        }
 
         // 触发系统默认的异常处理机制
         if (enableDefaultCrashHandler && null != mDefaultUncaughtExceptionHandler) {
@@ -117,5 +123,15 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> 
     @Override
     public void setNotifiable(INotifiable<RecordBean> notifiable) {
         this.mNotifiable = notifiable;
+    }
+
+    /**
+     * 设置日志信息发送接口
+     *
+     * @param sendable {@link ISendable}
+     */
+    @Override
+    public void setSendable(ISendable sendable) {
+        this.mSendable = sendable;
     }
 }

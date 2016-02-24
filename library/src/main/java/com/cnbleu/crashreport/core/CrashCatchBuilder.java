@@ -19,6 +19,7 @@ public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends Rec
 
     private IRecordable<D> mRecordable;
     private INotifiable<D> mNotifiable;
+    private ISendable mSendable;
 
     public CrashCatchBuilder defaultRecordable(IRecordable<D> recordable) {
         CrashCatchBuilder.sDefaultRecordable = recordable;
@@ -39,6 +40,11 @@ public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends Rec
         return this;
     }
 
+    public CrashCatchBuilder setSendable(ISendable sendable){
+        this.mSendable = sendable;
+        return this;
+    }
+
     public INotifiable<D> getNotifiable(){
         return this.mNotifiable;
     }
@@ -47,6 +53,9 @@ public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends Rec
         return this.mRecordable;
     }
 
+    public ISendable getSendable(){
+        return this.mSendable;
+    }
 
     /**
      * 是否允许执行系统默认的异常捕获
