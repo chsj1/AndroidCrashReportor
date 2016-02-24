@@ -1,5 +1,6 @@
 package com.cnbleu.crashreport.core;
 
+import com.cnbleu.crashreport.notifiable.INotifiable;
 import com.cnbleu.crashreport.recordable.RecordBean;
 
 /**
@@ -13,10 +14,11 @@ import com.cnbleu.crashreport.recordable.RecordBean;
 public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends RecordBean> {
     private static IRecordable sDefaultRecordable;
 
-    /** 默认允许执行系统默认的异常捕获， 默认不允许 */
+    /** 执行系统默认的异常捕获， 默认不允许 */
     private boolean enableDefaultCrashHandler = false;
 
     private IRecordable<D> mRecordable;
+    private INotifiable<D> mNotifiable;
 
     public CrashCatchBuilder defaultRecordable(IRecordable<D> recordable) {
         CrashCatchBuilder.sDefaultRecordable = recordable;
@@ -30,6 +32,15 @@ public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends Rec
     public CrashCatchBuilder setRecordable(IRecordable<D> recordable) {
         this.mRecordable = recordable;
         return this;
+    }
+
+    public CrashCatchBuilder setNotifiable(INotifiable<D> notifiable) {
+        this.mNotifiable = notifiable;
+        return this;
+    }
+
+    public INotifiable<D> getNotifiable(){
+        return this.mNotifiable;
     }
 
     public IRecordable<D> getRecordable() {

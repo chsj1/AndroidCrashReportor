@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.cnbleu.crashreport.CrashDebug;
 import com.cnbleu.crashreport.core.IRecordable;
+import com.cnbleu.crashreport.notifiable.INotifiable;
 import com.cnbleu.crashreport.recordable.RecordBean;
 import com.cnbleu.crashreport.utils.RecordHelper;
 
@@ -22,6 +23,7 @@ import static com.cnbleu.crashreport.CrashDebug.VERBOSE;
 public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> {
 
     private IRecordable<RecordBean> mRecordable;
+    private INotifiable<RecordBean> mNotifiable;
 
     private Thread.UncaughtExceptionHandler mDefaultUncaughtExceptionHandler;
     private boolean enableDefaultCrashHandler;
@@ -40,6 +42,7 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> 
         if (null == mRecordable) {
             this.mRecordable = builder.getDefaultRecordable();
         }
+        this.mNotifiable = builder.getNotifiable();
     }
 
     @Override
@@ -95,13 +98,24 @@ public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> 
         if (enableDefaultCrashHandler && null != mDefaultUncaughtExceptionHandler) {
             mDefaultUncaughtExceptionHandler.uncaughtException(thread, ex);
         } else {
-            // TODO: 16/2/24 异常处理结果反馈给用户
-
+            if (null != mNotifiable) {
+                mNotifiable.notify(bean);
+            }
         }
     }
 
     @Override
     public void setRecordable(IRecordable<RecordBean> recordable) {
         this.mRecordable = recordable;
+    }
+
+    /**
+     * 设置异常通知接口
+     *
+     * @param notifiable {@Link INotifiable}
+     */
+    @Override
+    public void setNotifiable(INotifiable<RecordBean> notifiable) {
+        this.mNotifiable = notifiable;
     }
 }

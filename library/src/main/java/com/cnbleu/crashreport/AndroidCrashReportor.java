@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.cnbleu.crashreport.catchable.javacatch.SimpleJavaCrashCatchBuilder;
 import com.cnbleu.crashreport.core.ICrashCatchable;
+import com.cnbleu.crashreport.notifiable.ToastNotifiable;
 import com.cnbleu.crashreport.recordable.FileRecordableImpl;
 
 import java.util.List;
@@ -48,6 +49,7 @@ public class AndroidCrashReportor {
 
         SimpleJavaCrashCatchBuilder javaCrashCatchBuilder = new SimpleJavaCrashCatchBuilder(context);
         javaCrashCatchBuilder.setRecordable(new FileRecordableImpl(context));
+        javaCrashCatchBuilder.setNotifiable(new ToastNotifiable(context));
         builder.addCrashCatchable(javaCrashCatchBuilder.build());
 
         init(context, builder.build());
