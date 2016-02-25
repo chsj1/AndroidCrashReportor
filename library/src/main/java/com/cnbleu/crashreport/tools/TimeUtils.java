@@ -1,4 +1,4 @@
-package com.cnbleu.crashreport.utils;
+package com.cnbleu.crashreport.tools;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

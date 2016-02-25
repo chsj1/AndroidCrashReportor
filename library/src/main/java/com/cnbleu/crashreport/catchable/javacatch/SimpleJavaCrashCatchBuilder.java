@@ -2,7 +2,7 @@ package com.cnbleu.crashreport.catchable.javacatch;
 
 import android.content.Context;
 
-import com.cnbleu.crashreport.core.CrashCatchBuilder;
+import com.cnbleu.crashreport.core.AbsCrashCatchBuilder;
 import com.cnbleu.crashreport.recordable.RecordBean;
 
 /**
@@ -12,7 +12,7 @@ import com.cnbleu.crashreport.recordable.RecordBean;
  * <b>Description:</b>
  * <br>
  */
-public class SimpleJavaCrashCatchBuilder extends CrashCatchBuilder<SimpleJavaCrashCatchImpl, RecordBean> {
+public class SimpleJavaCrashCatchBuilder extends AbsCrashCatchBuilder<SimpleJavaCrashCatchImpl, RecordBean> {
 
     private Context mContext;
 

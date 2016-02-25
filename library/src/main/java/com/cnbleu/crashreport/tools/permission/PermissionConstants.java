@@ -1,4 +1,4 @@
-package com.cnbleu.crashreport.permission;
+package com.cnbleu.crashreport.tools.permission;
 
 /**
  * <b>Project:</b> AndroidCrashReportor<br>

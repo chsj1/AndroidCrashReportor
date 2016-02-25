@@ -6,9 +6,9 @@ import android.util.Log;
 import com.cnbleu.crashreport.CrashDebug;
 import com.cnbleu.crashreport.core.IRecordable;
 import com.cnbleu.crashreport.core.ISendable;
-import com.cnbleu.crashreport.notifiable.INotifiable;
+import com.cnbleu.crashreport.core.INotifiable;
 import com.cnbleu.crashreport.recordable.RecordBean;
-import com.cnbleu.crashreport.utils.RecordHelper;
+import com.cnbleu.crashreport.tools.RecordHelper;
 
 import static com.cnbleu.crashreport.CrashDebug.TAG;
 import static com.cnbleu.crashreport.CrashDebug.VERBOSE;

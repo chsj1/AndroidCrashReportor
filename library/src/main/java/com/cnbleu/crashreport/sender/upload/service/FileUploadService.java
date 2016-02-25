@@ -17,10 +17,10 @@ import android.os.Process;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.cnbleu.crashreport.permission.PermissionConstants;
-import com.cnbleu.crashreport.permission.PermissionHelper;
-import com.cnbleu.crashreport.permission.PermissionUpdatedReceiver;
-import com.cnbleu.crashreport.utils.StreamUtils;
+import com.cnbleu.crashreport.tools.permission.PermissionConstants;
+import com.cnbleu.crashreport.tools.permission.PermissionHelper;
+import com.cnbleu.crashreport.tools.permission.PermissionUpdatedReceiver;
+import com.cnbleu.crashreport.tools.StreamUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,6 +1,5 @@
 package com.cnbleu.crashreport.core;
 
-import com.cnbleu.crashreport.notifiable.INotifiable;
 import com.cnbleu.crashreport.recordable.RecordBean;
 
 /**
@@ -11,7 +10,7 @@ import com.cnbleu.crashreport.recordable.RecordBean;
  * 基本的{@link ICrashCatchable}构造器。
  * <br>
  */
-public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends RecordBean> {
+public abstract class AbsCrashCatchBuilder<T extends ICrashCatchable, D extends RecordBean> {
     private static IRecordable sDefaultRecordable;
 
     /** 执行系统默认的异常捕获， 默认不允许 */
@@ -21,26 +20,26 @@ public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends Rec
     private INotifiable<D> mNotifiable;
     private ISendable mSendable;
 
-    public CrashCatchBuilder defaultRecordable(IRecordable<D> recordable) {
-        CrashCatchBuilder.sDefaultRecordable = recordable;
+    public AbsCrashCatchBuilder defaultRecordable(IRecordable<D> recordable) {
+        AbsCrashCatchBuilder.sDefaultRecordable = recordable;
         return this;
     }
 
     public IRecordable<D> getDefaultRecordable() {
-        return CrashCatchBuilder.sDefaultRecordable;
+        return AbsCrashCatchBuilder.sDefaultRecordable;
     }
 
-    public CrashCatchBuilder setRecordable(IRecordable<D> recordable) {
+    public AbsCrashCatchBuilder setRecordable(IRecordable<D> recordable) {
         this.mRecordable = recordable;
         return this;
     }
 
-    public CrashCatchBuilder setNotifiable(INotifiable<D> notifiable) {
+    public AbsCrashCatchBuilder setNotifiable(INotifiable<D> notifiable) {
         this.mNotifiable = notifiable;
         return this;
     }
 
-    public CrashCatchBuilder setSendable(ISendable sendable){
+    public AbsCrashCatchBuilder setSendable(ISendable sendable){
         this.mSendable = sendable;
         return this;
     }
@@ -64,7 +63,7 @@ public abstract class CrashCatchBuilder<T extends ICrashCatchable, D extends Rec
      *
      * @return
      */
-    public CrashCatchBuilder enableDefaultCrashHandler(boolean enable) {
+    public AbsCrashCatchBuilder enableDefaultCrashHandler(boolean enable) {
         this.enableDefaultCrashHandler = enable;
         return this;
     }

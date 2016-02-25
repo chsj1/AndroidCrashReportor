@@ -1,4 +1,4 @@
-package com.cnbleu.crashreport.notifiable;
+package com.cnbleu.crashreport.core;
 
 /**
  * <b>Project:</b> AndroidCrashReportor<br>

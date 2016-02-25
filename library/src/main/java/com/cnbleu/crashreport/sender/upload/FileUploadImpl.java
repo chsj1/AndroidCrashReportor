@@ -5,7 +5,7 @@ import android.content.Context;
 import com.cnbleu.crashreport.core.ISendable;
 import com.cnbleu.crashreport.recordable.RecordBean;
 import com.cnbleu.crashreport.sender.upload.service.FileUploadService;
-import com.cnbleu.crashreport.utils.FileHelper;
+import com.cnbleu.crashreport.tools.FileHelper;
 
 import java.io.File;
 import java.util.Arrays;

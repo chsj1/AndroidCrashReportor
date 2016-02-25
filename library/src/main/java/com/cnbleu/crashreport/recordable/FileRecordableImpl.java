@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.cnbleu.crashreport.core.IRecordable;
-import com.cnbleu.crashreport.utils.FileHelper;
-import com.cnbleu.crashreport.utils.TimeUtils;
+import com.cnbleu.crashreport.tools.FileHelper;
+import com.cnbleu.crashreport.tools.TimeUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;

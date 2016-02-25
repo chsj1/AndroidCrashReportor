@@ -1,4 +1,4 @@
-package com.cnbleu.crashreport.permission;
+package com.cnbleu.crashreport.tools.permission;
 
 import android.app.Activity;
 import android.content.Context;

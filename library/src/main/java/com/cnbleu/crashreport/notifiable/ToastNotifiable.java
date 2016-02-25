@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.os.Process;
 import android.widget.Toast;
 
+import com.cnbleu.crashreport.core.INotifiable;
 import com.cnbleu.crashreport.recordable.RecordBean;
 
 /**

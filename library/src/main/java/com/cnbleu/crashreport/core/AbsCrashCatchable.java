@@ -10,13 +10,13 @@ package com.cnbleu.crashreport.core;
  */
 public abstract class AbsCrashCatchable<T> implements ICrashCatchable<T> {
 
-    private CrashCatchBuilder mCrashCatchBuilder;
+    private AbsCrashCatchBuilder mCrashCatchBuilder;
 
-    public AbsCrashCatchable(CrashCatchBuilder builder) {
+    public AbsCrashCatchable(AbsCrashCatchBuilder builder) {
         this.mCrashCatchBuilder = builder;
     }
 
-    protected CrashCatchBuilder getCrashCatchBuilder() {
+    protected AbsCrashCatchBuilder getCrashCatchBuilder() {
         return this.mCrashCatchBuilder;
     }
 

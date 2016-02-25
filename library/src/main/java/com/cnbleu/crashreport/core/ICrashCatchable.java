@@ -2,8 +2,6 @@ package com.cnbleu.crashreport.core;
 
 import android.content.Context;
 
-import com.cnbleu.crashreport.notifiable.INotifiable;
-
 /**
  * <b>Project:</b> AndroidCrashReportor<br>
  * <b>Create Date:</b> 16/2/23<br>
