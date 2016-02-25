@@ -59,6 +59,8 @@ public class RequestPermissionActivity extends Activity implements PermissionCon
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Intent intent = new Intent();
         intent.setAction(PermissionUpdatedReceiver.ACTION);
+        // 仅本应用可以接收到该广播
+        intent.setPackage(getPackageName());
 
         Bundle bundle = new Bundle();
         bundle.putStringArray(PERMISSION, permissions);

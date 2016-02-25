@@ -32,7 +32,7 @@ public class ToastNotifyImpl implements INotifiable<RecordBean> {
             innerNotify(data);
             Looper.loop();
         } else {
-            // FIXME: 16/2/24 主线程异常捕获后通知能力处理
+            // FIXME: 16/2/24 主线程异常捕获后直接杀死进程可能导致文件记录失败
             android.os.Process.killProcess(Process.myPid());
         }
     }
