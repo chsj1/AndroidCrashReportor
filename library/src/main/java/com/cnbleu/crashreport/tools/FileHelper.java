@@ -42,7 +42,7 @@ public class FileHelper {
      *
      * @param context {@link Context}
      *
-     * @return
+     * @return {@link String} 文件名
      */
     public static String getRecordFileName(Context context, String times) {
         final String packageName = context.getPackageName();

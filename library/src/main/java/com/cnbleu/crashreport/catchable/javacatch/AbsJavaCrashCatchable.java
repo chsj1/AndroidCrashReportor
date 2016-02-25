@@ -7,7 +7,7 @@ import com.cnbleu.crashreport.core.AbsCrashCatchable;
  * <b>Create Date:</b> 16/2/23<br>
  * <b>Author:</b> Gordon<br>
  * <b>Description:</b>
- * Java异常捕获控制类的抽象实现。
+ * Java异常捕获控制器的抽象实现。
  * <br>
  */
 public abstract class AbsJavaCrashCatchable<T> extends AbsCrashCatchable<T> implements Thread.UncaughtExceptionHandler {

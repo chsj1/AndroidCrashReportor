@@ -15,6 +15,11 @@ public class StreamUtils {
         // hide
     }
 
+    /**
+     * 关闭一个{@link Closeable}
+     *
+     * @param closeable {@link Closeable}
+     */
     public static void close(Closeable closeable) {
         if (null == closeable) {
             return;

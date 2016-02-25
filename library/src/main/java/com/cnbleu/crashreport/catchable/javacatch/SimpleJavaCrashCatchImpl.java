@@ -18,7 +18,7 @@ import static com.cnbleu.crashreport.CrashDebug.VERBOSE;
  * <b>Create Date:</b> 16/2/23<br>
  * <b>Author:</b> Gordon<br>
  * <b>Description:</b>
- * Java异常捕获控制类的默认实现。
+ * Java异常捕获控制器的默认实现。
  * <br>
  */
 public class SimpleJavaCrashCatchImpl extends AbsJavaCrashCatchable<RecordBean> {

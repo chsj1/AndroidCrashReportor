@@ -20,6 +20,13 @@ public class RecordHelper {
         // hide
     }
 
+    /**
+     * 获取设备信息
+     *
+     * @param context {@link Context}
+     *
+     * @return 设备信息，包含：app版本名称、版本号；系统版本号；手机制造商；手机型号；cpu架构。
+     */
     public static String getDeviceInfo(Context context) {
         PackageInfo pInfo;
         try {

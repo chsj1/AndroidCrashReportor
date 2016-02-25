@@ -12,13 +12,15 @@ import com.cnbleu.crashreport.recordable.RecordBean;
  * <b>Project:</b> AndroidCrashReportor<br>
  * <b>Create Date:</b> 16/2/24<br>
  * <b>Author:</b> Gordon<br>
- * <b>Description:</b> <br>
+ * <b>Description:</b>
+ * 基于{@link Toast}的异常通知能力实现。
+ * <br>
  */
-public class ToastNotifiable implements INotifiable<RecordBean> {
+public class ToastNotifyImpl implements INotifiable<RecordBean> {
 
     private Context mContext;
 
-    public ToastNotifiable(Context context) {
+    public ToastNotifyImpl(Context context) {
         this.mContext = context;
     }
 

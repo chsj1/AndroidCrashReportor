@@ -17,10 +17,10 @@ import android.os.Process;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.cnbleu.crashreport.tools.StreamUtils;
 import com.cnbleu.crashreport.tools.permission.PermissionConstants;
 import com.cnbleu.crashreport.tools.permission.PermissionHelper;
 import com.cnbleu.crashreport.tools.permission.PermissionUpdatedReceiver;
-import com.cnbleu.crashreport.tools.StreamUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -67,7 +67,7 @@ public class FileUploadService extends Service implements PermissionConstants {
             final Bundle bundle = (Bundle) msg.obj;
             final int startId = bundle.getInt(EXTRA_STARTID);
 
-            onHandleIntent(bundle);
+            onHandleUpload(bundle);
             stopSelf(startId);
         }
     }
@@ -82,13 +82,19 @@ public class FileUploadService extends Service implements PermissionConstants {
             Log.w("perm", "requestCode: " + requestCode);
             if (PERMISSION_REQUEST_CODE == requestCode) {
                 if (grantResults.length > 0 && PackageManager.PERMISSION_GRANTED == grantResults[0]) {
-                    startWork(extras);
+                    startUpload(extras);
                 }
             }
         }
     };
 
 
+    /**
+     * 启动并上传异常信息文件。
+     *
+     * @param context {@link Context}
+     * @param files   {@link File}链表
+     */
     public static void uploadFiles(Context context, List<File> files) {
         Intent intent = new Intent(context, FileUploadService.class);
         intent.putExtra(EXTRA_DATA, (Serializable) files);
@@ -130,11 +136,16 @@ public class FileUploadService extends Service implements PermissionConstants {
                                                 PERMISSION_REQUEST_CODE,
                                                 bundle);
         } else {
-            startWork(bundle);
+            startUpload(bundle);
         }
     }
 
-    private void startWork(Bundle bundle) {
+    /**
+     * 开始上传
+     *
+     * @param bundle
+     */
+    private void startUpload(Bundle bundle) {
         Message msg = mServiceHandler.obtainMessage();
         msg.obj = bundle;
         mServiceHandler.sendMessage(msg);
@@ -154,20 +165,22 @@ public class FileUploadService extends Service implements PermissionConstants {
 
     @Override
     public void onDestroy() {
+        // 服务结束时，反注册广播
         unregisterReceiver(mPermissionUpdatedReceiver);
+        // 退出Looper消息队列
         mServiceLooper.quit();
         super.onDestroy();
     }
 
 
     @SuppressWarnings("unchecked")
-    protected void onHandleIntent(Bundle bundle) {
+    protected void onHandleUpload(Bundle bundle) {
         final List<File> files = (List<File>) bundle.getSerializable(EXTRA_DATA);
         if (null == files) {
             return;
         }
 
-        // 在此检查存储器状态，因为权限请求时间不可控制，期间用户有可能弹出存储器
+        // 再次检查存储器状态，因为权限请求时间不可控制，期间用户有可能弹出存储器
         if (!isStorageReady()) {
             return;
         }
@@ -240,7 +253,7 @@ public class FileUploadService extends Service implements PermissionConstants {
     /**
      * SD卡是否可以使用
      *
-     * @return
+     * @return true，可用。
      */
     private boolean isStorageReady() {
         return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());

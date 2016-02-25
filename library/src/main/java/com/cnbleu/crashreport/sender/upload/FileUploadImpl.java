@@ -14,7 +14,9 @@ import java.util.Arrays;
  * <b>Project:</b> AndroidCrashReportor<br>
  * <b>Create Date:</b> 16/2/24<br>
  * <b>Author:</b> Gordon<br>
- * <b>Description:</b> <br>
+ * <b>Description:</b>
+ * 基于文件上传的发送能力实现。
+ * <br>
  */
 public class FileUploadImpl implements ISendable {
     private Context mContext;
@@ -38,6 +40,7 @@ public class FileUploadImpl implements ISendable {
             files = file.listFiles();
         }
 
+        // 文件存在时，上传文件。
         if (null != files) {
             FileUploadService.uploadFiles(mContext, Arrays.asList(files));
         }

@@ -10,6 +10,7 @@ import com.cnbleu.crashreport.recordable.RecordBean;
  * <b>Create Date:</b> 16/2/23<br>
  * <b>Author:</b> Gordon<br>
  * <b>Description:</b>
+ * {@lin SimpleJavaCrashCatchBuilder}的异常捕获控制器构建器。
  * <br>
  */
 public class SimpleJavaCrashCatchBuilder extends AbsCrashCatchBuilder<SimpleJavaCrashCatchImpl, RecordBean> {

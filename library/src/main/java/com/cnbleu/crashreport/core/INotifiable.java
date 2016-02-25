@@ -10,5 +10,10 @@ package com.cnbleu.crashreport.core;
  */
 public interface INotifiable<T> {
 
+    /**
+     * 异常产生之后被调用。与具体的控制器实现有关。
+     *
+     * @param data {@link T}
+     */
     void notify(T data);
 }

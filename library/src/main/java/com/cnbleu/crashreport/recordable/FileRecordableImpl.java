@@ -20,7 +20,9 @@ import static com.cnbleu.crashreport.CrashDebug.VERBOSE;
  * <b>Project:</b> AndroidCrashReportor<br>
  * <b>Create Date:</b> 16/2/23<br>
  * <b>Author:</b> Gordon<br>
- * <b>Description:</b> <br>
+ * <b>Description:</b>
+ * 基于文件存储的异常记录能力实现。异常信息文件存储在/data/data/package-name/files目录下
+ * <br>
  */
 public class FileRecordableImpl implements IRecordable<RecordBean> {
 
