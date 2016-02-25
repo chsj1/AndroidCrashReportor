@@ -1,6 +1,5 @@
 package com.cnbleu.crashreport.demo.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,7 +11,7 @@ import com.cnbleu.crashreport.demo.R;
  * <b>Author:</b> Gordon<br>
  * <b>Description:</b> <br>
  */
-public class DemoActivity extends Activity {
+public class DemoActivity extends BaseToobarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
