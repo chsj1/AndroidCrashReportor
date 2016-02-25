@@ -72,7 +72,11 @@ public class RecordHelper {
 
         // cpu架构
         builder.append("cpu_abi: ");
-        builder.append(Build.CPU_ABI);
+        if (Build.VERSION.SDK_INT >= 21) {
+            builder.append(Build.SUPPORTED_ABIS);
+        } else {
+            builder.append(Build.CPU_ABI);
+        }
         builder.append(",");
         builder.append(LINE);
 
